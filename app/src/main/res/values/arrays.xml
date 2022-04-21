@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genre">
+        <item>Rock</item>
+        <item>Metal</item>
+        <item>Hardstyle</item>
+        <item>Pop</item>
+        <item>Tehno</item>
+    </string-array>
+</resources>

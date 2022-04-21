@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Projekt2RMA</string>
+    <string name="labelaSifra">Šifra</string>
+    <string name="labelaName">Name</string>
+    <string name="labelaGenre">Genre</string>
+    <string name="labeladatumIzlaska">Datum Izlaska</string>
+    <string name="labelaNazad">Nazad</string>
+    <string name="labelaSlika">Slika</string>
+    <string name="labelaNovi">Kreiraj novu glazbu</string>
+    <string name="labelaPromjeni">Promjeni glazbu</string>
+    <string name="labelaObrisi">Obriši glazbu</string>
+    <string name="labelaUslikaj">Uslikaj glazbu</string>
+</resources>
