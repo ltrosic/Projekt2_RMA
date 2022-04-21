@@ -26,8 +26,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import lukatrosic.projekt2rma.R;
-import lukatrosic.projekt2rma.model.Music;
-import lukatrosic.projekt2rma.viewModel.MusicViewModel;
+import lukatrosic.projekt2rma.model.Game;
+import lukatrosic.projekt2rma.viewModel.GameViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -57,7 +57,7 @@ public class CUDFragment extends Fragment {
     @BindView(R.id.obrisiGlazbu)
     Button obrisiGlazbu;
 
-    MusicViewModel model;
+    GameViewModel model;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,14 +73,14 @@ public class CUDFragment extends Fragment {
         picasso.load(R.drawable.nepoznato).fit().centerCrop().into(slikaCUD);
 
 
-        if (model.getMusic().getId() == 0) {
+        if (model.getGame().getId() == 0) {
             definirajNovuKomponentu();
             return view;
         }
-        name.setText(model.getMusic().getName());
-        genre.setSelection(model.getMusic().getGenre());
+        name.setText(model.getGame().getName());
+        genre.setSelection(model.getGame().getGenre());
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(model.getMusic().getDatumIzlaska());
+        calendar.setTime(model.getGame().getDatumIzlaska());
         datumIzlaska.updateDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
         definirajPromjenaBrisanjeOsoba();
 
@@ -100,20 +100,20 @@ public class CUDFragment extends Fragment {
     }
 
     private void novaKomponenta() {
-        model.getMusic().setName(name.getText().toString());
-        model.getMusic().setGenre(genre.getSelectedItemPosition());
+        model.getGame().setName(name.getText().toString());
+        model.getGame().setGenre(genre.getSelectedItemPosition());
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DAY_OF_MONTH, datumIzlaska.getDayOfMonth());
         c.set(Calendar.MONTH, datumIzlaska.getMonth());
         c.set(Calendar.YEAR, datumIzlaska.getYear());
-        model.getMusic().setDatumIzlaska(c.getTime());
-        model.dodajNoviMusic();
+        model.getGame().setDatumIzlaska(c.getTime());
+        model.dodajNoviGame();
         nazad();
 
     }
 
     private void definirajPromjenaBrisanjeOsoba() {
-        Music o = model.getMusic();
+        Game o = model.getGame();
         novaGlazba.setVisibility(View.GONE);
         name.setText(o.getName());
         genre.setSelection(o.getGenre());
@@ -176,20 +176,20 @@ public class CUDFragment extends Fragment {
         String naziv = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_osoba";
         File dir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File datoteka = File.createTempFile(naziv,".jpg",dir);
-        model.getMusic().setPutanjaSlika("file:" + datoteka.getAbsolutePath());
+        model.getGame().setPutanjaSlika("file:" + datoteka.getAbsolutePath());
         return datoteka;
     }
 
     private void promjenaKomponente(){
-        model.getMusic().setName(name.getText().toString());
-        model.getMusic().setGenre(genre.getSelectedItemPosition());
+        model.getGame().setName(name.getText().toString());
+        model.getGame().setGenre(genre.getSelectedItemPosition());
         //model.getPcPart().setDatumKupnje(datumKupnje.getText().toString());
-        model.promjeniMusic();
+        model.promjeniGame();
         nazad();
     }
 
     private void obrisiKomponentu(){
-        model.obrisiMusic();
+        model.obrisiGame();
         nazad();
     }
 
@@ -203,8 +203,8 @@ public class CUDFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==SLIKANJE && resultCode == Activity.RESULT_OK){
-            model.promjeniMusic();
-            Picasso.get().load(model.getMusic().getPutanjaSlika()).fit().centerCrop().into(slikaCUD);
+            model.promjeniGame();
+            Picasso.get().load(model.getGame().getPutanjaSlika()).fit().centerCrop().into(slikaCUD);
         }
     }
 }

@@ -18,21 +18,21 @@ import java.util.Calendar;
 import java.util.List;
 
 import lukatrosic.projekt2rma.R;
-import lukatrosic.projekt2rma.model.Music;
+import lukatrosic.projekt2rma.model.Game;
 
-public class MusicAdapter extends ArrayAdapter<Music>{
+public class GameAdapter extends ArrayAdapter<Game>{
 
-    private List<Music> itemList;
-    private MusicClickListener musicClickListener;
+    private List<Game> itemList;
+    private GameClickListener gameClickListener;
     private int resource;
     private Context context;
 
-    public MusicAdapter(@NonNull Context context, int resource, MusicClickListener musicClickListener) {
+    public GameAdapter(@NonNull Context context, int resource, GameClickListener gameClickListener) {
         super(context, resource);
 
         this.resource = resource;
         this.context = context;
-        this.musicClickListener = musicClickListener;
+        this.gameClickListener = gameClickListener;
     }
 
     private static class ViewHolder {
@@ -51,7 +51,7 @@ public class MusicAdapter extends ArrayAdapter<Music>{
     public View getView(int position, @Nullable View convertView, @androidx.annotation.NonNull ViewGroup parent) {
 
         View view = convertView;
-        Music music;
+        Game game;
         ViewHolder viewHolder;
 
         if (view == null) {
@@ -74,19 +74,19 @@ public class MusicAdapter extends ArrayAdapter<Music>{
 
             }
 
-            music = getItem(position);
+            game = getItem(position);
 
-            if (music != null) {
+            if (game != null) {
 
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(music.getDatumIzlaska());
+                calendar.setTime(game.getDatumIzlaska());
 
-                viewHolder.id.setText(String.valueOf(music.getId()));
-                viewHolder.name.setText(music.getName());
-                viewHolder.genre.setText(context.getResources().getStringArray(R.array.genre)[music.getGenre()]);
+                viewHolder.id.setText(String.valueOf(game.getId()));
+                viewHolder.name.setText(game.getName());
+                viewHolder.genre.setText(context.getResources().getStringArray(R.array.genre)[game.getGenre()]);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd. MM. yyyy.");
                 try {
-                    viewHolder.datumIzlaska.setText(simpleDateFormat.format(music.getDatumIzlaska()));
+                    viewHolder.datumIzlaska.setText(simpleDateFormat.format(game.getDatumIzlaska()));
                 }catch (Exception e){
                     viewHolder.datumIzlaska.setText("");
                 }
@@ -95,16 +95,16 @@ public class MusicAdapter extends ArrayAdapter<Music>{
                 //viewHolder.datumKupnje.setOnTouchListener(this::onTouch);
                 //viewHolder.datumKupnje.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-                if (music.getPutanjaSlika() == null) {
+                if (game.getPutanjaSlika() == null) {
                     Picasso.get().load(R.drawable.nepoznato).fit().centerCrop().into(viewHolder.putanjaSlika);
                 } else {
-                    Picasso.get().load(music.getPutanjaSlika()).fit().centerCrop().into(viewHolder.putanjaSlika);
+                    Picasso.get().load(game.getPutanjaSlika()).fit().centerCrop().into(viewHolder.putanjaSlika);
                 }
             }
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) { musicClickListener.onItemClick(music); }
+                public void onClick(View v) { gameClickListener.onItemClick(game); }
             });
         }
         return view;
@@ -117,11 +117,11 @@ public class MusicAdapter extends ArrayAdapter<Music>{
 
     @Nullable
     @Override
-    public Music getItem(int position) {
+    public Game getItem(int position) {
         return itemList.get(position);
     }
 
-    public void setItemList(List<Music> itemList) {
+    public void setItemList(List<Game> itemList) {
         this.itemList = itemList;
     }
 

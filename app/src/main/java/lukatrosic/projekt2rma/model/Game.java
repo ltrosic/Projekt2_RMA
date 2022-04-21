@@ -12,14 +12,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(tableName = "music")
-public class Music {
+@Entity(tableName = "game")
+public class Game {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
 
-    @ColumnInfo(name="muzika")
+    @ColumnInfo(name="igra")
     @NonNull
     private String name;
     private int genre;

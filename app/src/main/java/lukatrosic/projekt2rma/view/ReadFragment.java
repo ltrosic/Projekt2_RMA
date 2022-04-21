@@ -18,10 +18,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import lukatrosic.projekt2rma.R;
-import lukatrosic.projekt2rma.view.adapter.MusicAdapter;
-import lukatrosic.projekt2rma.view.adapter.MusicClickListener;
-import lukatrosic.projekt2rma.model.Music;
-import lukatrosic.projekt2rma.viewModel.MusicViewModel;
+import lukatrosic.projekt2rma.model.Game;
+import lukatrosic.projekt2rma.view.adapter.GameAdapter;
+import lukatrosic.projekt2rma.view.adapter.GameClickListener;
+import lukatrosic.projekt2rma.viewModel.GameViewModel;
 
 public class ReadFragment extends Fragment{
 
@@ -30,7 +30,7 @@ public class ReadFragment extends Fragment{
     @BindView(R.id.lista)
     ListView listView;
 
-    private MusicViewModel model;
+    private GameViewModel model;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,12 +49,12 @@ public class ReadFragment extends Fragment{
     }
 
     private void refeshData(){
-        model.dohvatiPCPart().observe(getViewLifecycleOwner(), new Observer<List<Music>>() {
+        model.dohvatiPCPart().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override
-            public void onChanged(@Nullable List<Music> itemList) {
+            public void onChanged(@Nullable List<Game> itemList) {
                 swipeRefreshLayout.setRefreshing(false);
-                ((MusicAdapter)listView.getAdapter()).setItemList(itemList);
-                ((MusicAdapter) listView.getAdapter()).refreshItem();
+                ((GameAdapter)listView.getAdapter()).setItemList(itemList);
+                ((GameAdapter) listView.getAdapter()).refreshItem();
 
             }
         });
@@ -72,10 +72,10 @@ public class ReadFragment extends Fragment{
 
     private void defineList() {
 
-        listView.setAdapter( new MusicAdapter(getActivity(), R.layout.red_liste, new MusicClickListener() {
+        listView.setAdapter( new GameAdapter(getActivity(), R.layout.red_liste, new GameClickListener() {
             @Override
-            public void onItemClick(Music music) {
-                model.setMusic(music);
+            public void onItemClick(Game game) {
+                model.setGame(game);
                 ((MainActivity)getActivity()).cud();
             }
         }));
@@ -83,7 +83,7 @@ public class ReadFragment extends Fragment{
 
     @OnClick(R.id.fab)
     public void addNew(){
-        model.setMusic(new Music());
+        model.setGame(new Game());
         ((MainActivity)getActivity()).cud();
     }
 }

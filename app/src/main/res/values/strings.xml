@@ -6,8 +6,8 @@
     <string name="labeladatumIzlaska">Datum Izlaska</string>
     <string name="labelaNazad">Nazad</string>
     <string name="labelaSlika">Slika</string>
-    <string name="labelaNovi">Kreiraj novu glazbu</string>
-    <string name="labelaPromjeni">Promjeni glazbu</string>
-    <string name="labelaObrisi">Obriši glazbu</string>
-    <string name="labelaUslikaj">Uslikaj glazbu</string>
+    <string name="labelaNovi">Kreiraj novu igru</string>
+    <string name="labelaPromjeni">Promjeni igru</string>
+    <string name="labelaObrisi">Obriši igru</string>
+    <string name="labelaUslikaj">Uslikaj igru</string>
 </resources>

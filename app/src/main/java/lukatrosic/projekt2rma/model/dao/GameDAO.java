@@ -8,20 +8,20 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import lukatrosic.projekt2rma.model.Music;
+import lukatrosic.projekt2rma.model.Game;
 
 @Dao
-public interface MusicDAO {
+public interface GameDAO {
 
-    @Query("select * from music order by genre")
-    LiveData<List<Music>> dohvatiMusic();
+    @Query("select * from Game order by genre")
+    LiveData<List<Game>> dohvatiGame();
 
     @Insert
-    void dodajNoviMusic(Music music);
+    void dodajNoviGame(Game game);
 
     @Update
-    void promjeniMusic(Music music);
+    void promjeniGame(Game game);
 
     @Delete
-    void obrisiMusic(Music music);
+    void obrisiGame(Game game);
 }

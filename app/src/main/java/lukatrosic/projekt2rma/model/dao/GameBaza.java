@@ -7,22 +7,22 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import lukatrosic.projekt2rma.model.Music;
+import lukatrosic.projekt2rma.model.Game;
 
-@Database(entities = {Music.class},version = 1,exportSchema = false)
+@Database(entities = {Game.class},version = 1,exportSchema = false)
 @TypeConverters({Converter.class})
-public abstract class MusicBaza extends RoomDatabase{
+public abstract class GameBaza extends RoomDatabase{
 
-    public abstract MusicDAO musicDAO();
+    public abstract GameDAO musicDAO();
 
-    private static MusicBaza instance;
+    private static GameBaza instance;
 
-    public static MusicBaza getInstance(Context context){
+    public static GameBaza getInstance(Context context){
         if(instance==null){
             instance = Room.databaseBuilder(
                     context.getApplicationContext(),
-                    MusicBaza.class,
-                    "music-baza"
+                    GameBaza.class,
+                    "game-baza"
             ).allowMainThreadQueries().build();
         }
         return instance;

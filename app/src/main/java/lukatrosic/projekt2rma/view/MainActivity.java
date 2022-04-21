@@ -9,13 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import lukatrosic.projekt2rma.R;
-import lukatrosic.projekt2rma.viewModel.MusicViewModel;
+import lukatrosic.projekt2rma.viewModel.GameViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MusicViewModel model;
+    private GameViewModel model;
 
-    public MusicViewModel getModel() {
+    public GameViewModel getModel() {
         return model;
     }
 
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        model = ViewModelProviders.of(this).get(MusicViewModel.class);
+        model = ViewModelProviders.of(this).get(GameViewModel.class);
         read();
 
     }
